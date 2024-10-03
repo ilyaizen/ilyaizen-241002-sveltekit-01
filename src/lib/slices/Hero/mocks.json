@@ -1,0 +1,29 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"first_name": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Ilya"
+			},
+			"last_name": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Aizenberg"
+			},
+			"tag_line": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Weaving Digital Magic through Code and Design"
+			},
+			"about_line": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Creative developer from Tel Aviv, specializing in modern web experiences. Blends cutting-edge tech with striking visuals. Passionate about pushing the boundaries of digital interaction."
+			}
+		},
+		"items": []
+	}
+]
