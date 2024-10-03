@@ -205,7 +205,7 @@
 				{/each}
 			</div>
 
-			<div class="flex flex-wrap">
+			<div class="flex flex-wrap pt-2">
 				{#if slice.primary.tag_line}
 					{#each slice.primary.tag_line.split(' ') as word}
 						<span class="tagline-animation inline-block text-xs sm:text-xl">{word}&nbsp;</span>
@@ -223,7 +223,7 @@
 	</div>
 	<section id="about">
 		<h2 class="text-xl font-bold about-heading pt-8">{slice.primary.about_heading}</h2>
-		<div class="max-w-full text-sm text-muted-foreground">
+		<div class="max-w-full text-sm text-muted-foreground pt-4">
 			{#if slice.primary.about_line}
 				{#each slice.primary.about_line.split(' ') as word}
 					<span class="about-text-animation inline-block">{word}&nbsp;</span>
