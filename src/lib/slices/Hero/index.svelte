@@ -222,7 +222,7 @@
 		</span>
 	</div>
 	<section id="about">
-		<h2 class="text-xl font-bold about-heading pt-8">About</h2>
+		<h2 class="text-xl font-bold about-heading pt-8">{slice.primary.about_heading}</h2>
 		<div class="max-w-full text-sm text-muted-foreground">
 			{#if slice.primary.about_line}
 				{#each slice.primary.about_line.split(' ') as word}

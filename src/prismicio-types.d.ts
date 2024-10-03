@@ -126,6 +126,16 @@ export interface HeroSliceDefaultPrimary {
 	tag_line: prismic.KeyTextField;
 
 	/**
+	 * About Heading field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.about_heading
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	about_heading: prismic.KeyTextField;
+
+	/**
 	 * About Line field in *Hero → Default → Primary*
 	 *
 	 * - **Field Type**: Text

@@ -41,6 +41,13 @@
             "placeholder": ""
           }
         },
+        "about_heading": {
+          "type": "Text",
+          "config": {
+            "label": "About Heading",
+            "placeholder": ""
+          }
+        },
         "about_line": {
           "type": "Text",
           "config": {

@@ -22,6 +22,11 @@
 				"__TYPE__": "FieldContent",
 				"type": "Text",
 				"value": "Creative developer from Tel Aviv, specializing in modern web experiences. Blends cutting-edge tech with striking visuals. Passionate about pushing the boundaries of digital interaction."
+			},
+			"about_heading": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "About"
 			}
 		},
 		"items": []
