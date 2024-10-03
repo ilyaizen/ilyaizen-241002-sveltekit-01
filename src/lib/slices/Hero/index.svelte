@@ -61,11 +61,11 @@
 			.fromTo(
 				'.profile-image-animation',
 				{
-					y: -20,
+					x: -20,
 					opacity: 0
 				},
 				{
-					y: 0,
+					x: 0,
 					opacity: 1,
 					ease: 'expo.out',
 					duration: 1.2
@@ -75,11 +75,11 @@
 			.fromTo(
 				'.tagline-animation',
 				{
-					y: -20,
+					x: -10,
 					opacity: 0
 				},
 				{
-					y: 0,
+					x: 0,
 					opacity: 1,
 					ease: 'expo.out',
 					duration: 0.8,
@@ -90,11 +90,11 @@
 			.fromTo(
 				'.about-heading',
 				{
-					y: -5,
+					x: -5,
 					opacity: 0
 				},
 				{
-					y: 0,
+					x: 0,
 					opacity: 1,
 					duration: 0.8,
 					delay: 0.5,
@@ -105,11 +105,11 @@
 			.fromTo(
 				'.about-text-animation',
 				{
-					y: -5,
+					x: -5,
 					opacity: 0
 				},
 				{
-					y: 0,
+					x: 0,
 					opacity: 1,
 					duration: 0.4,
 					stagger: 0.01,
