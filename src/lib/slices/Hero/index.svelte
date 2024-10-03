@@ -183,23 +183,23 @@
 			<div class="flex flex-wrap">
 				{#each ['Hey', 'there,'] as word}
 					<span
-						class="welcome-animation-1 inline-block text-2xl sm:text-5xl xl:text-6xl/none font-bold tracking-tighter mr-2"
+						class="welcome-animation-1 inline-block text-3xl sm:text-5xl font-bold tracking-tighter mr-2"
 						>{word}</span
 					>
 				{/each}
 				<span
-					class="wave-animation inline-block text-2xl sm:text-5xl xl:text-6xl/none font-bold tracking-tighter ml-2 cursor-pointer"
+					class="wave-animation inline-block text-3xl sm:text-5xl font-bold tracking-tighter cursor-pointer"
 					>👋</span
 				>
 			</div>
 			<div class="flex flex-wrap">
 				<span
-					class="welcome-animation-2 inline text-2xl sm:text-5xl xl:text-6xl/none font-bold tracking-tighter mr-2"
+					class="welcome-animation-2 inline text-3xl sm:text-5xl font-bold tracking-tighter mr-2"
 					>I'm</span
 				>
 				{#each [slice.primary.first_name, slice.primary.last_name] as word}
 					<span
-						class="welcome-animation-3 inline text-2xl sm:text-5xl xl:text-6xl/none font-bold tracking-tighter mr-2"
+						class="welcome-animation-3 inline text-3xl sm:text-5xl font-bold tracking-tighter mr-2"
 						>{word}</span
 					>
 				{/each}
@@ -208,7 +208,7 @@
 			<div class="flex flex-wrap">
 				{#if slice.primary.tag_line}
 					{#each slice.primary.tag_line.split(' ') as word}
-						<span class="tagline-animation inline-block md:text-xl">{word}&nbsp;</span>
+						<span class="tagline-animation inline-block text-xs sm:text-xl">{word}&nbsp;</span>
 					{/each}
 				{/if}
 			</div>
