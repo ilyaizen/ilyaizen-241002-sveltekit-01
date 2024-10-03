@@ -213,13 +213,13 @@
 				{/if}
 			</div>
 		</div>
-		<!-- <span
+		<span
 			class="profile-image-animation flex overflow-hidden relative shrink-0 size-28 rounded-full shadow-xl"
 		>
 			<div role="figure" class="aspect-square w-full h-full">
 				<PrismicImage field={slice.primary.profile_picture} />
 			</div>
-		</span> -->
+		</span>
 	</div>
 	<section id="about">
 		<h2 class="text-xl font-bold about-heading pt-8">About</h2>
