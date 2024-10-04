@@ -24,7 +24,10 @@ const config = {
 				throw new Error(message);
 			}
 		},
-		adapter: adapter()
+		adapter: adapter(),
+		files: {
+			assets: 'static'
+		}
 	}
 };
 

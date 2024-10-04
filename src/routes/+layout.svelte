@@ -11,6 +11,7 @@
 	import { Moon, Sun, RotateCcw } from 'lucide-svelte';
 	import '@fontsource-variable/grandstander';
 	import { goto } from '$app/navigation';
+	import '$lib/styles/hebrew-font.css';
 
 	// Add dark mode store
 	const darkMode = writable(false);
@@ -65,8 +66,8 @@
 		gsap.to(document.body, {
 			backgroundColor: bgColor,
 			color: textColor,
-			duration: 0.5,
-			ease: 'power4.out'
+			duration: 0.3,
+			ease: 'expo.out'
 		});
 	}
 
@@ -117,7 +118,7 @@
 				{/if}
 			</Button>
 		</div>
-		<main style="font-family: 'Grandstander Variable', system-ui;">
+		<main style="font-family: {isRTL ? 'YardenAlefAlefAlef' : 'Grandstander Variable'}, system-ui;">
 			<slot />
 		</main>
 		<PrismicPreview {repositoryName} />
