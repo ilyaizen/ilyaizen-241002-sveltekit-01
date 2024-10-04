@@ -108,9 +108,9 @@
 					opacity: 1,
 					duration: 0.8,
 					delay: 0.5,
-					ease: 'power4.out'
+					ease: 'expo.out'
 				},
-				'-=1'
+				'-=1.5'
 			)
 			.fromTo(
 				'.about-text-animation',
@@ -123,9 +123,9 @@
 					opacity: 1,
 					duration: 0.4,
 					stagger: 0.01,
-					ease: 'power4.out'
+					ease: 'expo.out'
 				},
-				'-=0.4'
+				'-=0.8'
 			);
 
 		// Add jiggle and click animations for wave emoji

@@ -1,0 +1,90 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"education_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "fur",
+				"type": "Text"
+			},
+			"education_item": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"education_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "hay",
+									"type": "Text"
+								}
+							],
+							[
+								"education_description",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "egg",
+									"type": "Text"
+								}
+							],
+							[
+								"education_dates",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "dozen",
+									"type": "Text"
+								}
+							],
+							[
+								"education_url",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "were",
+									"type": "Text"
+								}
+							],
+							[
+								"education_icon_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "#58b126",
+									"type": "Color"
+								}
+							],
+							[
+								"education_icon",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
+										"width": 4000,
+										"height": 4000
+									},
+									"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
+									"width": 4000,
+									"height": 4000,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

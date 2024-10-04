@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 
-	export let slice: Content.WorkSectionSlice;
+	export let slice: Content.EducationSlice;
 
 	let tl: gsap.core.Timeline;
 
@@ -11,31 +11,46 @@
 		tl = gsap.timeline({ paused: true });
 
 		tl.fromTo(
-			'.work-heading-animation',
-			{ x: -5, opacity: 0 },
-			{ x: 0, opacity: 1, duration: 0.8, ease: 'expo.out' }
-		)
-			.fromTo(
-				'.work-item-animation',
-				{ y: 20, opacity: 0 },
-				{ y: 0, opacity: 1, duration: 0.6, stagger: 0.2, ease: 'expo.out' },
-				'-=0.4'
-			)
-			.call(() => {
-				// Dispatch a custom event when work animation is complete
-				window.dispatchEvent(new CustomEvent('workAnimationComplete'));
-			});
+			'.education-heading-animation',
+			{
+				x: -5,
+				opacity: 0
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 0.8,
+				ease: 'expo.out'
+			}
+		).fromTo(
+			'.education-item-animation',
+			{
+				y: 20,
+				opacity: 0
+			},
+			{
+				y: 0,
+				opacity: 1,
+				duration: 0.6,
+				stagger: 0.2,
+				ease: 'expo.out'
+			},
+			'-=0.4'
+		);
 
-		// Start animation when hero animation completes
-		window.addEventListener('heroAnimationComplete', startWorkAnimation);
+		// Listen for the work animation complete event
+		const handleWorkAnimationComplete = () => {
+			startEducationAnimation();
+		};
+
+		window.addEventListener('workAnimationComplete', handleWorkAnimationComplete);
 
 		return () => {
-			// Clean up the event listener when the component is destroyed
-			window.removeEventListener('heroAnimationComplete', startWorkAnimation);
+			window.removeEventListener('workAnimationComplete', handleWorkAnimationComplete);
 		};
 	});
 
-	function startWorkAnimation() {
+	function startEducationAnimation() {
 		tl.play();
 	}
 
@@ -54,12 +69,14 @@
 	}
 </script>
 
-<section id="work" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<h2 class="work-heading-animation text-xl font-bold pt-8 pb-4">{slice.primary.work_heading}</h2>
+<section id="education" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+	<h2 class="education-heading-animation text-xl font-bold pt-8 pb-4">
+		{slice.primary.education_heading}
+	</h2>
 	<div>
-		{#each slice.primary.work_item as item}
-			<div class="work-item-animation">
-				<a class="block cursor-pointer pb-4" href={item.work_url}>
+		{#each slice.primary.education_item as item}
+			<div class="education-item-animation">
+				<a class="block cursor-pointer pb-4" href={item.education_url}>
 					<div class="rounded-xl bg-card text-card-foreground flex items-center">
 						<div class="flex-none">
 							<span
@@ -67,7 +84,10 @@
 							>
 								<div
 									class="w-full h-full"
-									style={getIconStyle(item.work_icon_color ?? '', item.work_icon?.url ?? '')}
+									style={getIconStyle(
+										item.education_icon_color ?? '',
+										item.education_icon?.url ?? ''
+									)}
 								></div>
 							</span>
 						</div>
@@ -76,7 +96,7 @@
 								<h3
 									class="inline-flex items-center justify-start font-semibold leading-none text-xs sm:text-sm group"
 								>
-									{item.work_title}
+									{item.education_title}
 									<span class="inline-flex gap-x-1"></span>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -93,12 +113,12 @@
 										<path d="m9 18 6-6-6-6"></path>
 									</svg>
 								</h3>
-								<div class="font-sans text-xs">{item.work_description}</div>
+								<div class="font-sans text-xs">{item.education_description}</div>
 							</div>
 							<div
 								class="text-xs sm:text-sm tabular-nums text-muted-foreground text-right ml-4 mr-4 shrink-0"
 							>
-								{item.work_dates}
+								{item.education_dates}
 							</div>
 						</div>
 					</div>

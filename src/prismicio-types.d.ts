@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = WorkSectionSlice | HeroSlice;
+type PageDocumentDataSlicesSlice = EducationSlice | WorkSectionSlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -80,6 +80,123 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 >;
 
 export type AllDocumentTypes = PageDocument;
+
+/**
+ * Item in *Education → Default → Primary → Education Item*
+ */
+export interface EducationSliceDefaultPrimaryEducationItemItem {
+	/**
+	 * Education Title field in *Education → Default → Primary → Education Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[].education_title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	education_title: prismic.KeyTextField;
+
+	/**
+	 * Education Description field in *Education → Default → Primary → Education Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[].education_description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	education_description: prismic.KeyTextField;
+
+	/**
+	 * Education Dates field in *Education → Default → Primary → Education Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[].education_dates
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	education_dates: prismic.KeyTextField;
+
+	/**
+	 * Education URL field in *Education → Default → Primary → Education Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[].education_url
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	education_url: prismic.KeyTextField;
+
+	/**
+	 * Education Icon field in *Education → Default → Primary → Education Item*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[].education_icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	education_icon: prismic.ImageField<never>;
+
+	/**
+	 * Education Icon Color field in *Education → Default → Primary → Education Item*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[].education_icon_color
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	education_icon_color: prismic.ColorField;
+}
+
+/**
+ * Primary content in *Education → Default → Primary*
+ */
+export interface EducationSliceDefaultPrimary {
+	/**
+	 * Education Heading field in *Education → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_heading
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	education_heading: prismic.KeyTextField;
+
+	/**
+	 * Education Item field in *Education → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: education.default.primary.education_item[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	education_item: prismic.GroupField<Simplify<EducationSliceDefaultPrimaryEducationItemItem>>;
+}
+
+/**
+ * Default variation for Education Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EducationSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<EducationSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Education*
+ */
+type EducationSliceVariation = EducationSliceDefault;
+
+/**
+ * Education Shared Slice
+ *
+ * - **API ID**: `education`
+ * - **Description**: Education
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EducationSlice = prismic.SharedSlice<'education', EducationSliceVariation>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -357,6 +474,11 @@ declare module '@prismicio/client' {
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			EducationSlice,
+			EducationSliceDefaultPrimaryEducationItemItem,
+			EducationSliceDefaultPrimary,
+			EducationSliceVariation,
+			EducationSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,

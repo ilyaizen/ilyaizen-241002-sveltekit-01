@@ -1,0 +1,78 @@
+{
+  "id": "education",
+  "type": "SharedSlice",
+  "name": "Education",
+  "description": "Education",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "education_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Education Heading",
+            "placeholder": ""
+          }
+        },
+        "education_item": {
+          "type": "Group",
+          "config": {
+            "label": "Education Item",
+            "repeat": true,
+            "fields": {
+              "education_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Education Title",
+                  "placeholder": ""
+                }
+              },
+              "education_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Education Description",
+                  "placeholder": ""
+                }
+              },
+              "education_dates": {
+                "type": "Text",
+                "config": {
+                  "label": "Education Dates",
+                  "placeholder": ""
+                }
+              },
+              "education_url": {
+                "type": "Text",
+                "config": {
+                  "label": "Education URL",
+                  "placeholder": ""
+                }
+              },
+              "education_icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Education Icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "education_icon_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Education Icon Color",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
