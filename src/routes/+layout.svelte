@@ -10,14 +10,22 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Moon, Sun, RotateCcw } from 'lucide-svelte';
 	import '@fontsource-variable/grandstander';
+	import { goto } from '$app/navigation';
 
 	// Add dark mode store
 	const darkMode = writable(false);
+
+	// Add a store for the current language
+	const lang = writable('en-us');
+
+	$: isRTL = $lang === 'he';
 
 	onMount(() => {
 		const unsubscribe = page.subscribe(($page) => {
 			if ($page.data) {
 				loading.set(false);
+				// Update the lang store based on the current page's lang parameter
+				lang.set($page.params.lang || 'en-us');
 			}
 		});
 
@@ -61,6 +69,12 @@
 			ease: 'power4.out'
 		});
 	}
+
+	function toggleLanguage() {
+		const newLang = $lang === 'en-us' ? 'he' : 'en-us';
+		const newPath = newLang === 'en-us' ? '/' : '/he/';
+		goto(newPath + $page.url.pathname.split('/').slice(2).join('/'));
+	}
 </script>
 
 <svelte:head>
@@ -77,32 +91,38 @@
 	{/if}
 </svelte:head>
 
-{#if $loading}
-	<div class="loading-screen">
-		<div class="spinner"></div>
-		<p>Loading...</p>
-	</div>
-{:else}
-	<div class="fixed top-4 right-4 flex gap-2 z-50">
-		<Button variant="ghost" size="icon" on:click={() => window.location.reload()}>
-			<RotateCcw class="h-[1.2rem] w-[1.2rem]" />
-			<span class="sr-only">Refresh page</span>
-		</Button>
-		<Button variant="ghost" size="icon" on:click={toggleDarkMode}>
-			{#if $darkMode}
-				<Sun class="h-[1.2rem] w-[1.2rem]" />
-				<span class="sr-only">Light mode</span>
-			{:else}
-				<Moon class="h-[1.2rem] w-[1.2rem]" />
-				<span class="sr-only">Dark mode</span>
-			{/if}
-		</Button>
-	</div>
-	<main style="font-family: 'Grandstander Variable', system-ui;">
-		<slot />
-	</main>
-	<PrismicPreview {repositoryName} />
-{/if}
+<div dir={isRTL ? 'rtl' : 'ltr'}>
+	{#if $loading}
+		<div class="loading-screen">
+			<div class="spinner"></div>
+			<p>Loading...</p>
+		</div>
+	{:else}
+		<div class="fixed top-4 right-4 flex gap-2 z-50">
+			<Button variant="ghost" size="icon" on:click={toggleLanguage}>
+				{$lang === 'en-us' ? 'עב' : 'En'}
+				<span class="sr-only">Toggle language</span>
+			</Button>
+			<Button variant="ghost" size="icon" on:click={() => window.location.reload()}>
+				<RotateCcw class="h-[1.2rem] w-[1.2rem]" />
+				<span class="sr-only">Refresh page</span>
+			</Button>
+			<Button variant="ghost" size="icon" on:click={toggleDarkMode}>
+				{#if $darkMode}
+					<Sun class="h-[1.2rem] w-[1.2rem]" />
+					<span class="sr-only">Light mode</span>
+				{:else}
+					<Moon class="h-[1.2rem] w-[1.2rem]" />
+					<span class="sr-only">Dark mode</span>
+				{/if}
+			</Button>
+		</div>
+		<main style="font-family: 'Grandstander Variable', system-ui;">
+			<slot />
+		</main>
+		<PrismicPreview {repositoryName} />
+	{/if}
+</div>
 
 <style>
 	.loading-screen {

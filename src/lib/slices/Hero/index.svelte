@@ -3,8 +3,13 @@
 	import type { Content } from '@prismicio/client';
 	import gsap from 'gsap';
 	import { PrismicImage } from '@prismicio/svelte';
+	import { page } from '$app/stores';
 
 	export let slice: Content.HeroSlice;
+
+	$: isHebrew = $page.params.lang === 'he';
+
+	$: greetings = isHebrew ? ['שלום', 'וברכה,'] : ['Hey', 'there,'];
 
 	onMount(() => {
 		const tl = gsap.timeline();
@@ -181,7 +186,7 @@
 	<div class="pt-40 flex gap-2 justify-between">
 		<div class="flex flex-col flex-1 space-y-1.5">
 			<div class="flex flex-wrap">
-				{#each ['Hey', 'there,'] as word}
+				{#each greetings as word}
 					<span
 						class="welcome-animation-1 inline-block text-3xl sm:text-5xl font-bold tracking-tighter mr-2"
 						>{word}</span
@@ -195,7 +200,7 @@
 			<div class="flex flex-wrap">
 				<span
 					class="welcome-animation-2 inline text-3xl sm:text-5xl font-bold tracking-tighter mr-2"
-					>I'm</span
+					>{isHebrew ? 'אני' : "I'm"}</span
 				>
 				{#each [slice.primary.first_name, slice.primary.last_name] as word}
 					<span

@@ -9,10 +9,7 @@ export async function load({ fetch, cookies, params }) {
 	} as never);
 
 	try {
-		const page = await client.getByUID('page', params.uid, {
-			lang: 'en-us' // Default to English for these routes
-		});
-
+		const page = await client.getByUID('page', params.uid);
 		return {
 			page,
 			title: asText(page.data.title),
@@ -32,11 +29,12 @@ export async function load({ fetch, cookies, params }) {
 export async function entries() {
 	const client = createClient();
 
-	const pages = await client.getAllByType('page', { lang: 'en-us' });
+	const pages = await client.getAllByType('page', { lang: '*' });
 
-	return pages
-		.filter((page) => page.uid !== 'home') // Exclude the home page
-		.map((page) => {
-			return { uid: page.uid };
-		});
+	return pages.map((page) => {
+		return {
+			lang: page.lang,
+			uid: page.uid
+		};
+	});
 }

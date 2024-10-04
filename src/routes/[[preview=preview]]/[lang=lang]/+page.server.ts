@@ -9,8 +9,9 @@ export async function load({ fetch, cookies, params }) {
 	} as never);
 
 	try {
-		const page = await client.getByUID('page', params.uid, {
-			lang: 'en-us' // Default to English for these routes
+		// Fetch the 'home' page with the specified language
+		const page = await client.getByUID('page', 'home', {
+			lang: params.lang
 		});
 
 		return {
@@ -21,22 +22,14 @@ export async function load({ fetch, cookies, params }) {
 			meta_image: page.data.meta_image.url
 		};
 	} catch (error) {
-		console.error('Error fetching page:', error);
+		console.error('Error fetching home page:', error);
 		return {
 			status: 404,
-			error: 'Page not found'
+			error: 'Home page not found'
 		};
 	}
 }
 
-export async function entries() {
-	const client = createClient();
-
-	const pages = await client.getAllByType('page', { lang: 'en-us' });
-
-	return pages
-		.filter((page) => page.uid !== 'home') // Exclude the home page
-		.map((page) => {
-			return { uid: page.uid };
-		});
+export function entries() {
+	return [{ lang: 'he' }]; // Only generate the Hebrew route
 }
