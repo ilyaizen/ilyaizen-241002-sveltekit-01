@@ -52,7 +52,7 @@
 		tl.play();
 	}
 
-	function getIconStyle(color, iconUrl) {
+	function getIconStyle(color: string | undefined, iconUrl: string) {
 		return `
 			background-color: ${color || '#000000'};
 			-webkit-mask-image: url(${iconUrl});
@@ -73,45 +73,45 @@
 		{#each slice.primary.work_item as item}
 			<div class="work-item-animation">
 				<a class="block cursor-pointer pb-4" href={item.work_url}>
-					<div class="rounded-lg bg-card text-card-foreground flex">
+					<div class="rounded-xl bg-card text-card-foreground flex items-center">
 						<div class="flex-none">
 							<span
 								class="relative flex shrink-0 overflow-hidden rounded-full border size-12 m-auto bg-muted-background dark:bg-foreground"
 							>
 								<div
 									class="w-full h-full"
-									style={getIconStyle(item.work_icon_color, item.work_icon?.url)}
+									style={getIconStyle(item.work_icon_color ?? '', item.work_icon?.url ?? '')}
 								></div>
 							</span>
 						</div>
-						<div class="flex-grow ml-4 items-center flex-col group">
+						<div class="flex-grow ml-4 flex items-center justify-between">
 							<div class="flex flex-col">
-								<div class="flex items-center justify-between gap-x-2 text-base">
-									<h3
-										class="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm"
+								<h3
+									class="inline-flex items-center justify-start font-semibold leading-none text-xs sm:text-sm group"
+								>
+									{item.work_title}
+									<span class="inline-flex gap-x-1"></span>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="lucide lucide-chevron-right size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 rotate-0"
 									>
-										{item.work_title}
-										<span class="inline-flex gap-x-1"></span>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="24"
-											height="24"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											class="lucide lucide-chevron-right size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 rotate-0"
-										>
-											<path d="m9 18 6-6-6-6"></path>
-										</svg>
-									</h3>
-									<div class="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
-										{item.work_dates}
-									</div>
-								</div>
+										<path d="m9 18 6-6-6-6"></path>
+									</svg>
+								</h3>
 								<div class="font-sans text-xs">{item.work_description}</div>
+							</div>
+							<div
+								class="text-xs sm:text-sm tabular-nums text-muted-foreground text-right ml-4 mr-4 shrink-0"
+							>
+								{item.work_dates}
 							</div>
 						</div>
 					</div>
