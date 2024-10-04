@@ -15,9 +15,11 @@ export const repositoryName = import.meta.env.VITE_PRISMIC_ENVIRONMENT || sm.rep
  *
  * @type {prismic.ClientConfig["routes"]}
  */
-// TODO: Update the routes array to match your project's route structure.
-
-const routes = [{ type: 'page', path: '/:lang?/:uid' }];
+// Update the routes array to handle both language-specific and default routes
+const routes = [
+	{ type: 'page', path: '/he/:uid' },
+	{ type: 'page', path: '/:uid' }
+];
 
 /**
  * Creates a Prismic client for the project's repository. The client is used to
@@ -33,4 +35,15 @@ export const createClient = ({ cookies = undefined, ...config } = {}) => {
 	});
 	enableAutoPreviews({ client, cookies });
 	return client;
+};
+
+// Add a helper function to get supported languages
+export const getSupportedLanguages = () => {
+	// Replace with your actual supported languages
+	return ['he', 'en-us'];
+};
+
+// Add a helper function to check if a language is supported
+export const isSupportedLanguage = (lang: string) => {
+	return lang === 'he' || lang === undefined || lang === '';
 };

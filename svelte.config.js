@@ -14,18 +14,17 @@ const config = {
 		alias: {
 			'@/*': './src/lib/*'
 		},
-		adapter: adapter(),
 		prerender: {
-			handleEntryGeneratorMismatch: 'ignore',
-			handleHttpError: ({ path, referrer, message }) => {
-				// Ignore 404 errors
-				if (message.includes('404')) {
+			handleHttpError: ({ path, message }) => {
+				// ignore 404 errors for /en-us/ routes
+				if (path.startsWith('/en-us/') && message.includes('404')) {
 					return;
 				}
-				// Log other errors
-				console.warn(`Warning: ${message}. Path: ${path}. Referrer: ${referrer}`);
+				// otherwise, fail the build
+				throw new Error(message);
 			}
-		}
+		},
+		adapter: adapter()
 	}
 };
 
