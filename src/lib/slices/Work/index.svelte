@@ -51,6 +51,20 @@
 	function startWorkAnimation() {
 		tl.play();
 	}
+
+	function getIconStyle(color, iconUrl) {
+		return `
+			background-color: ${color || '#000000'};
+			-webkit-mask-image: url(${iconUrl});
+			mask-image: url(${iconUrl});
+			-webkit-mask-size: contain;
+			mask-size: contain;
+			-webkit-mask-repeat: no-repeat;
+			mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			mask-position: center;
+		`;
+	}
 </script>
 
 <section id="work" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
@@ -64,10 +78,10 @@
 							<span
 								class="relative flex shrink-0 overflow-hidden rounded-full border size-12 m-auto bg-muted-background dark:bg-foreground"
 							>
-								<PrismicImage
-									field={item.work_icon}
-									class="aspect-square h-full w-full object-contain"
-								/>
+								<div
+									class="w-full h-full"
+									style={getIconStyle(item.work_icon_color, item.work_icon?.url)}
+								></div>
 							</span>
 						</div>
 						<div class="flex-grow ml-4 items-center flex-col group">
