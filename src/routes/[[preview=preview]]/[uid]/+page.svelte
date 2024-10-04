@@ -6,4 +6,8 @@
 	export let data;
 </script>
 
-<SliceZone slices={data?.page?.data?.slices ?? []} {components} />
+{#if data?.page}
+	<SliceZone slices={data.page.data.slices} {components} />
+{:else}
+	<p>Page not found</p>
+{/if}

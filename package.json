@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "concurrently \"npm:vite:dev\" \"npm:slicemachine\" --prefix-colors blue,magenta",
+		"dev": "concurrently \"npm:vite:dev\" \"npm:slicemachine\"",
 		"vite:dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
