@@ -1,0 +1,90 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"work_item": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"work_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "married",
+									"type": "Text"
+								}
+							],
+							[
+								"work_description",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "lion",
+									"type": "Text"
+								}
+							],
+							[
+								"work_url",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "alone",
+									"type": "Text"
+								}
+							],
+							[
+								"work_dates",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "push",
+									"type": "Text"
+								}
+							],
+							[
+								"work_icon",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+										"width": 4752,
+										"height": 3168
+									},
+									"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+									"width": 4752,
+									"height": 3168,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"work_icon_color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "#f66e1d",
+									"type": "Color"
+								}
+							]
+						]
+					}
+				]
+			},
+			"work_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "keep",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

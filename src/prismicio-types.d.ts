@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = HeroSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = WorkSectionSlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -215,6 +215,123 @@ type RichTextSliceVariation = RichTextSliceDefault;
  */
 export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
 
+/**
+ * Item in *Work → Default → Primary → Work Item*
+ */
+export interface WorkSectionSliceDefaultPrimaryWorkItemItem {
+	/**
+	 * Work Title field in *Work → Default → Primary → Work Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[].work_title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	work_title: prismic.KeyTextField;
+
+	/**
+	 * Work Description field in *Work → Default → Primary → Work Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[].work_description
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	work_description: prismic.KeyTextField;
+
+	/**
+	 * Work Dates field in *Work → Default → Primary → Work Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[].work_dates
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	work_dates: prismic.KeyTextField;
+
+	/**
+	 * Work URL field in *Work → Default → Primary → Work Item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[].work_url
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	work_url: prismic.KeyTextField;
+
+	/**
+	 * Work Icon field in *Work → Default → Primary → Work Item*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[].work_icon
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	work_icon: prismic.ImageField<never>;
+
+	/**
+	 * Work Icon Color field in *Work → Default → Primary → Work Item*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[].work_icon_color
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	work_icon_color: prismic.ColorField;
+}
+
+/**
+ * Primary content in *Work → Default → Primary*
+ */
+export interface WorkSectionSliceDefaultPrimary {
+	/**
+	 * Work Heading field in *Work → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_heading
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	work_heading: prismic.KeyTextField;
+
+	/**
+	 * Work Item field in *Work → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_section.default.primary.work_item[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	work_item: prismic.GroupField<Simplify<WorkSectionSliceDefaultPrimaryWorkItemItem>>;
+}
+
+/**
+ * Default variation for Work Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkSectionSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<WorkSectionSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Work*
+ */
+type WorkSectionSliceVariation = WorkSectionSliceDefault;
+
+/**
+ * Work Shared Slice
+ *
+ * - **API ID**: `work_section`
+ * - **Description**: WorkSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkSectionSlice = prismic.SharedSlice<'work_section', WorkSectionSliceVariation>;
+
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -247,7 +364,12 @@ declare module '@prismicio/client' {
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
-			RichTextSliceDefault
+			RichTextSliceDefault,
+			WorkSectionSlice,
+			WorkSectionSliceDefaultPrimaryWorkItemItem,
+			WorkSectionSliceDefaultPrimary,
+			WorkSectionSliceVariation,
+			WorkSectionSliceDefault
 		};
 	}
 }

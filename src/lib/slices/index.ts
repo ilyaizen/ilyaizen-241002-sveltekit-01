@@ -2,8 +2,10 @@
 
 import Hero from './Hero/index.svelte';
 import RichText from './RichText/index.svelte';
+import Work from './Work/index.svelte';
 
 export const components = {
 	hero: Hero,
-	rich_text: RichText
+	rich_text: RichText,
+	work_section: Work
 };

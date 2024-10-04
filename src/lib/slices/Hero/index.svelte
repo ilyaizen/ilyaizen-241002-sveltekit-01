@@ -9,10 +9,15 @@
 
 	$: isHebrew = $page.params.lang === 'he';
 
-	$: greetings = isHebrew ? ['שלום', 'וברכה,'] : ['Hey', 'there,'];
+	$: greetings = isHebrew ? ['שלום', 'שלום,'] : ['Hey', 'there,'];
 
 	onMount(() => {
-		const tl = gsap.timeline();
+		const tl = gsap.timeline({
+			onComplete: () => {
+				// Dispatch a custom event when the hero animation completes
+				window.dispatchEvent(new CustomEvent('heroAnimationComplete'));
+			}
+		});
 
 		tl.fromTo(
 			'.welcome-animation-1',
@@ -180,7 +185,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="px-4 md:px-6 mx-auto space-y-8 w-full max-w-2xl"
+	class=""
 	id="hero"
 >
 	<div class="pt-40 flex gap-2 justify-between">

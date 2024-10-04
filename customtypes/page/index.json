@@ -27,10 +27,10 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
-						"hero": {
+						"work_section": {
 							"type": "SharedSlice"
 						},
-						"rich_text": {
+						"hero": {
 							"type": "SharedSlice"
 						}
 					}

@@ -92,7 +92,7 @@
 	{/if}
 </svelte:head>
 
-<div dir={isRTL ? 'rtl' : 'ltr'}>
+<div dir={isRTL ? 'rtl' : 'ltr'} class="px-4 md:px-6 mx-auto space-y-8 w-full max-w-2xl">
 	{#if $loading}
 		<div class="loading-screen">
 			<div class="spinner"></div>
