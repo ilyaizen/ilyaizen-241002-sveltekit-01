@@ -23,10 +23,39 @@
 
 	let resourcesLoaded = false;
 
-	onMount(() => {
+	function waitForResources() {
+		return new Promise((resolve) => {
+			if (document.readyState === 'complete') {
+				// @ts-ignore
+				resolve();
+			} else {
+				window.addEventListener('load', resolve);
+			}
+		});
+	}
+
+	function waitForFonts() {
+		return document.fonts.ready;
+	}
+
+	function waitForImages() {
+		const images = Array.from(document.images);
+		const imagePromises = images.map((img) => {
+			if (img.complete) {
+				return Promise.resolve();
+			} else {
+				return new Promise((resolve) => {
+					img.onload = img.onerror = resolve;
+				});
+			}
+		});
+		return Promise.all(imagePromises);
+	}
+
+	// @ts-ignore
+	onMount(async () => {
 		const unsubscribe = page.subscribe(($page) => {
 			if ($page.data) {
-				// Don't set loading to false here
 				lang.set($page.params.lang || 'en-us');
 			}
 		});
@@ -49,18 +78,14 @@
 			localStorage.setItem('darkMode', JSON.stringify($darkMode));
 		});
 
-		// Add this new logic for handling resource loading
-		if (document.readyState === 'complete') {
-			resourcesLoaded = true;
-			loading.set(false);
-		} else {
-			document.addEventListener('DOMContentLoaded', () => {
-				setTimeout(() => {
-					resourcesLoaded = true;
-					loading.set(false);
-				}, 1000); // Adjust this timeout as needed
-			});
-		}
+		// Wait for all resources to load
+		await Promise.all([waitForResources(), waitForFonts(), waitForImages()]);
+
+		// Add a small delay to ensure smooth transition
+		await new Promise((resolve) => setTimeout(resolve, 500));
+
+		resourcesLoaded = true;
+		loading.set(false);
 
 		return () => {
 			unsubscribe();
