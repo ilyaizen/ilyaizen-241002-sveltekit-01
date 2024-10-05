@@ -60,7 +60,7 @@
 		{#each slice.primary.work_item as item}
 			<div class="work-item-animation">
 				<a class="block cursor-pointer pb-4" href={item.work_url}>
-					<div class="rounded-xl bg-card text-card-foreground flex items-center">
+					<div class="rounded-xl bg-card/50 text-card-foreground/50 flex items-center">
 						<div class="flex-none">
 							<span
 								class="relative flex shrink-0 overflow-hidden rounded-full border size-12 m-auto bg-muted-background dark:bg-foreground"

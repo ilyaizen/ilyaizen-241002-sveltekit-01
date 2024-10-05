@@ -1,20 +1,19 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
-	import { onMount, afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import { loading } from '$lib/stores/loading';
-	import { writable } from 'svelte/store';
+	import { darkMode } from '$lib/stores/darkMode';
 	import { gsap } from 'gsap';
 	import { Button } from '$lib/components/ui/button';
 	import { Moon, Sun, RotateCcw } from 'lucide-svelte';
 	import '@fontsource-variable/grandstander';
 	import { goto } from '$app/navigation';
 	import '$lib/styles/hebrew-font.css';
-
-	// Add dark mode store
-	const darkMode = writable(false);
+	import MatrixRain from '$lib/components/MatrixRain.svelte';
+	import { writable } from 'svelte/store';
 
 	// Add a store for the current language
 	const lang = writable('en-us');
@@ -25,7 +24,7 @@
 	/**
 	 * @type {gsap.TweenTarget}
 	 */
-	let loadingElement;
+	let loadingElement: gsap.TweenTarget;
 
 	function waitForResources() {
 		return new Promise((resolve) => {
@@ -104,8 +103,6 @@
 		};
 	});
 
-	// Remove the afterUpdate function
-
 	function toggleDarkMode() {
 		darkMode.update((value) => !value);
 	}
@@ -114,7 +111,7 @@
 	 * @param {string} bgColor
 	 * @param {string} textColor
 	 */
-	function animateThemeChange(bgColor, textColor) {
+	function animateThemeChange(bgColor: string, textColor: string) {
 		gsap.to(document.body, {
 			backgroundColor: bgColor,
 			color: textColor,
@@ -143,6 +140,8 @@
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
 </svelte:head>
+
+<MatrixRain />
 
 <div dir={isRTL ? 'rtl' : 'ltr'} class="px-4 md:px-6 mx-auto space-y-8 w-full max-w-2xl">
 	{#if $loading}
@@ -213,10 +212,10 @@
 		transition:
 			background-color 0.5s,
 			color 0.5s;
+		background-color: transparent;
 	}
 
 	:global(body.dark) {
-		background-color: #1a1a1a;
 		color: #ffffff;
 	}
 </style>
