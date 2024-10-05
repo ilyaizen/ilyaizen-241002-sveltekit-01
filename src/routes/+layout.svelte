@@ -95,8 +95,7 @@
 <div dir={isRTL ? 'rtl' : 'ltr'} class="px-4 md:px-6 mx-auto space-y-8 w-full max-w-2xl">
 	{#if $loading}
 		<div class="loading-screen">
-			<div class="spinner"></div>
-			<p>Loading...</p>
+			<div class="color-wheel"></div>
 		</div>
 	{:else}
 		<div class="fixed top-4 right-4 flex gap-2 z-50">
@@ -132,29 +131,28 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: #f0f0f0;
+		background-color: rgba(240, 240, 240, 0.8);
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		justify-content: flex-end;
+		align-items: flex-start;
 		z-index: 9999;
 	}
 
-	.spinner {
-		border: 4px solid #f3f3f3;
-		border-top: 4px solid #3498db;
-		border-radius: 50%;
-		width: 40px;
-		height: 40px;
-		animation: spin 1s linear infinite;
+	.color-wheel {
+		width: 300px;
+		height: 300px;
+		border-radius: 100%;
+		background: conic-gradient(in hsl longer hue, red 0 0);
+		animation: spin 3s linear infinite;
+		transform: translate(50%, -50%) scale(15);
 	}
 
 	@keyframes spin {
 		0% {
-			transform: rotate(0deg);
+			transform: translate(50%, -50%) scale(15) rotate(0deg);
 		}
 		100% {
-			transform: rotate(360deg);
+			transform: translate(50%, -50%) scale(15) rotate(360deg);
 		}
 	}
 

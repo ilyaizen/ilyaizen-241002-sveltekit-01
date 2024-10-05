@@ -19,7 +19,7 @@
 			{
 				x: 0,
 				opacity: 1,
-				duration: 0.8,
+				duration: 0.4,
 				ease: 'expo.out'
 			}
 		).fromTo(

@@ -13,7 +13,7 @@
 		tl.fromTo(
 			'.work-heading-animation',
 			{ x: -5, opacity: 0 },
-			{ x: 0, opacity: 1, duration: 0.8, ease: 'expo.out' }
+			{ x: 0, opacity: 1, duration: 0.4, ease: 'expo.out' }
 		)
 			.fromTo(
 				'.work-item-animation',
