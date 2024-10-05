@@ -22,6 +22,10 @@
 	$: isRTL = $lang === 'he';
 
 	let resourcesLoaded = false;
+	/**
+	 * @type {gsap.TweenTarget}
+	 */
+	let loadingElement;
 
 	function waitForResources() {
 		return new Promise((resolve) => {
@@ -84,6 +88,13 @@
 		// Add a small delay to ensure smooth transition
 		await new Promise((resolve) => setTimeout(resolve, 500));
 
+		// Animate out the loading screen
+		await gsap.to(loadingElement, {
+			opacity: 0,
+			duration: 0.5,
+			ease: 'expo.out'
+		});
+
 		resourcesLoaded = true;
 		loading.set(false);
 
@@ -135,7 +146,7 @@
 
 <div dir={isRTL ? 'rtl' : 'ltr'} class="px-4 md:px-6 mx-auto space-y-8 w-full max-w-2xl">
 	{#if $loading}
-		<div class="loading-screen">
+		<div class="loading-screen" bind:this={loadingElement}>
 			<div class="color-wheel"></div>
 		</div>
 	{:else}
@@ -177,6 +188,7 @@
 		justify-content: flex-end;
 		align-items: flex-start;
 		z-index: 9999;
+		opacity: 1; /* Add this line */
 	}
 
 	.color-wheel {
@@ -184,7 +196,7 @@
 		height: 300px;
 		border-radius: 100%;
 		background: conic-gradient(in hsl longer hue, red 0 0);
-		animation: spin 3s linear infinite;
+		animation: spin 0.3s linear infinite;
 		transform: translate(50%, -50%) scale(15);
 	}
 
