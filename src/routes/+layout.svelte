@@ -3,7 +3,7 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import { loading } from '$lib/stores/loading';
 	import { writable } from 'svelte/store';
 	import { gsap } from 'gsap';
@@ -21,11 +21,12 @@
 
 	$: isRTL = $lang === 'he';
 
+	let resourcesLoaded = false;
+
 	onMount(() => {
 		const unsubscribe = page.subscribe(($page) => {
 			if ($page.data) {
-				loading.set(false);
-				// Update the lang store based on the current page's lang parameter
+				// Don't set loading to false here
 				lang.set($page.params.lang || 'en-us');
 			}
 		});
@@ -48,11 +49,26 @@
 			localStorage.setItem('darkMode', JSON.stringify($darkMode));
 		});
 
+		// Add this new logic for handling resource loading
+		if (document.readyState === 'complete') {
+			resourcesLoaded = true;
+			loading.set(false);
+		} else {
+			document.addEventListener('DOMContentLoaded', () => {
+				setTimeout(() => {
+					resourcesLoaded = true;
+					loading.set(false);
+				}, 1000); // Adjust this timeout as needed
+			});
+		}
+
 		return () => {
 			unsubscribe();
 			unsubscribeDarkMode();
 		};
 	});
+
+	// Remove the afterUpdate function
 
 	function toggleDarkMode() {
 		darkMode.update((value) => !value);
